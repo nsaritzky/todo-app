@@ -128,7 +128,7 @@ function App() {
               onClick={() => toggleTodo(todo)}
             >
               {todo.complete ? (
-                <img src="./images/icon-check.svg" />
+                <img src="/todo-app/icon-check.svg" />
               ) : (
                 <span
                   className={`h-full w-full rounded-full border bg-white p-3 hover:p-0 ${
@@ -153,7 +153,7 @@ function App() {
           onClick={() => deleteTodo(todo)}
           className="hidden group-hover:block"
         >
-          <img src="./images/icon-cross.svg" />
+          <img src="/todo-app/icon-cross.svg" />
         </button>
       </div>
     )
@@ -180,16 +180,16 @@ function App() {
     >
       <picture className="w-full">
         <source
-          srcSet="./images/bg-desktop-light.jpg"
+          srcSet="/todo-app/bg-desktop-light.jpg"
           media="(min-width: 768px)"
         />
         <source
-          srcSet="./images/bg-mobile-light.jpg"
+          srcSet="/todo-app/bg-mobile-light.jpg"
           media="(max-width: 767px)"
         />
         <img
           className="absolute -z-10 h-auto w-full min-w-full object-cover"
-          src="./images/bg-desktop-light.jpg"
+          src="/todo-app/bg-desktop-light.jpg"
           alt="background"
         />
       </picture>
@@ -198,9 +198,9 @@ function App() {
           <h1 className="text-4xl font-bold text-white">T O D O</h1>
           <button onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? (
-              <img src="./images/icon-moon.svg" />
+              <img src="/todo-app/icon-moon.svg" />
             ) : (
-              <img src="./images/icon-sun.svg" />
+              <img src="/todo-app/icon-sun.svg" />
             )}
           </button>
         </div>
