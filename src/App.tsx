@@ -255,6 +255,7 @@ function App() {
                   } ${
                     view === item && "text-bright-blue hover:text-bright-blue"
                   } `}
+                  // @ts-ignore
                   onClick={() => setView(item)}
                 >
                   {item}
