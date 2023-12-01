@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
   DndContext,
   closestCenter,
@@ -25,14 +25,28 @@ interface Todo {
 function App() {
   const [newTodo, setNewTodo] = useState<string>("")
 
-  const [todos, setTodos] = useState<Todo[]>([])
-  let [nextId, setNextId] = useState<number>(2)
+  const [todos, setTodos] = useState<Todo[]>(
+    localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos")!)
+      : [],
+  )
+  let [nextId, setNextId] = useState<number>(
+    Math.max(...todos.map((todo) => todo.id)),
+  )
   let completed = todos.filter((todo) => todo.complete).length
   let left = todos.length - completed
 
   const [view, setView] = useState<"all" | "active" | "completed">("all")
 
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("darkMode")
+      ? JSON.parse(localStorage.getItem("darkMode")!)
+      : false,
+  )
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", darkMode || "false")
+  }, [darkMode])
 
   const visibleTodos = todos.filter((todo) => {
     switch (view) {
@@ -68,6 +82,10 @@ function App() {
 
     setTodos(newTodos)
   }
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
 
   const sensors = useSensors(
     useSensor(MouseSensor),
