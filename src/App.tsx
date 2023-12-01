@@ -110,8 +110,8 @@ function App() {
         style={style}
         {...attributes}
         {...listeners}
-        className={`group flex w-full justify-between bg-white p-4 text-lg text-very-dark-grayish-blue-light first:rounded-t ${
-          darkMode && "bg-very-dark-grayer-blue"
+        className={`group flex w-full justify-between p-4 text-lg text-very-dark-grayish-blue-light first:rounded-t ${
+          darkMode ? "bg-very-dark-grayer-blue" : "bg-white"
         }`}
       >
         <div className="flex">
@@ -131,8 +131,8 @@ function App() {
                 <img src="/todo-app/icon-check.svg" />
               ) : (
                 <span
-                  className={`h-full w-full rounded-full border bg-white p-3 hover:p-0 ${
-                    darkMode && "bg-very-dark-grayer-blue"
+                  className={`h-full w-full rounded-full border p-3 hover:p-0 ${
+                    darkMode ? "bg-very-dark-grayer-blue" : "bg-white"
                   }`}
                 />
               )}
@@ -214,8 +214,12 @@ function App() {
           <input
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
-            className={`my-6 w-full rounded bg-white p-4 text-lg text-very-dark-grayish-blue-light outline-none
-                ${darkMode && " bg-very-dark-grayer-blue"}`}
+            className={`my-6 w-full rounded p-4 text-lg outline-none
+                ${
+                  darkMode
+                    ? " bg-very-dark-grayer-blue text-light-grayish-blue"
+                    : "bg-white text-very-dark-grayish-blue-light"
+                }`}
             placeholder="Create a new todo..."
           />
         </form>
@@ -239,8 +243,8 @@ function App() {
             </SortableContext>
           </DndContext>
           <div
-            className={`flex w-full justify-between rounded-b bg-white p-4 ${
-              darkMode && "bg-very-dark-grayer-blue"
+            className={`flex w-full justify-between rounded-b p-4 ${
+              darkMode ? "bg-very-dark-grayer-blue" : "bg-white"
             }`}
           >
             <div className="text-dark-grayish-blue-light">
@@ -250,8 +254,10 @@ function App() {
               {["all", "active", "completed"].map((item, i) => (
                 <button
                   key={i}
-                  className={`capitalize hover:text-very-dark-grayish-blue-light ${
-                    darkMode && "hover:text-light-grayish-blue"
+                  className={`capitalize  ${
+                    darkMode
+                      ? "hover:text-light-grayish-blue"
+                      : "hover:text-very-dark-grayish-blue-light"
                   } ${
                     view === item && "text-bright-blue hover:text-bright-blue"
                   } `}
@@ -264,8 +270,10 @@ function App() {
             </div>
 
             <button
-              className={`text-dark-grayish-blue-light hover:text-very-dark-grayish-blue-light ${
-                darkMode && "hover:text-light-grayish-blue"
+              className={`text-dark-grayish-blue-light  ${
+                darkMode
+                  ? "hover:text-light-grayish-blue"
+                  : "hover:text-very-dark-grayish-blue-light"
               }`}
               onClick={() => {
                 setTodos(todos.filter((todo) => !todo.complete))
